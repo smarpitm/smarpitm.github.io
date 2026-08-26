@@ -248,14 +248,18 @@
   .about-copy p { color: var(--dim); font-size: 1rem; }
   .about-copy strong { color: var(--paper); font-weight: 500; }
 
+  .about-side {
+    display: grid;
+    gap: 20px;
+    position: sticky;
+    top: 90px;
+  }
   .config-card {
     border: 1px solid var(--line);
     background: var(--ink-2);
     font-family: var(--mono);
     font-size: 13px;
     line-height: 2;
-    position: sticky;
-    top: 90px;
   }
   .config-head {
     display: flex;
@@ -433,7 +437,7 @@
 
   @media (max-width: 900px) {
     .about-grid { grid-template-columns: 1fr; }
-    .config-card { position: static; }
+    .about-side { position: static; }
     .stack-row { grid-template-columns: 1fr; gap: 10px; }
     .hack-grid { grid-template-columns: repeat(2, 1fr); }
     .hack-cell:nth-child(2n) { border-right: none; }
@@ -483,7 +487,7 @@
     <div class="hero-foot">
       <div class="whoami"><span class="prompt">$</span> whoami → <span class="typed" id="typed"></span><span class="caret"></span></div>
       <div class="hero-stats">
-        <div class="stat"><span class="num" data-count="22">0</span><span class="lbl">repos</span></div>
+        <div class="stat"><span class="num" data-count="23">0</span><span class="lbl">repos</span></div>
         <div class="stat"><span class="num" data-count="8">0</span><span class="lbl">hacks</span></div>
         <div class="stat"><span class="num" data-count="26">0</span><span class="lbl">stars</span></div>
       </div>
@@ -519,7 +523,8 @@
           </p>
         </div>
       </div>
-      <aside class="config-card reveal">
+      <aside class="about-side">
+      <div class="config-card reveal">
         <div class="config-head"><span class="dots"><i></i><i></i><i></i></span> smarpit.config.yaml</div>
         <div class="config-body">
           <div class="row"><span class="k">role</span><span class="v">ml_engineer()</span></div>
@@ -529,9 +534,20 @@
           <div class="row"><span class="k">hackathon_count</span><span class="v on">8 and rising</span></div>
           <div class="row"><span class="k">open_to_work</span><span class="v on">true</span></div>
         </div>
+      </div>
+      <div class="config-card readme-card reveal">
+        <div class="config-head"><span class="dots"><i></i><i></i><i></i></span> github.com/smarpitm — README.md</div>
+        <div class="config-body">
+          <div class="row"><span class="k">🔭 working_on</span><span class="v">ML &amp; DS projects</span></div>
+          <div class="row"><span class="k">🌱 learning</span><span class="v">ML · Deep Learning · DSA</span></div>
+          <div class="row"><span class="k">👯 collab_on</span><span class="v">Python · ML · Data Science</span></div>
+          <div class="row"><span class="k">💬 ask_me_about</span><span class="v on">Python · Pandas · starting ML</span></div>
+          <div class="row"><span class="k">📫 reach_me</span><span class="v on"><a href="mailto:smarpitmalik@gmail.com">email</a> · <a href="https://www.linkedin.com/" target="_blank" rel="noopener">linkedin ↗</a></span></div>
+          <div class="row"><span class="k">✨ note</span><span class="v">thanks for stopping by!</span></div>
+        </div>
+      </div>
       </aside>
     </div>
-  </div>
 </section>
 
 <section id="stack">
@@ -591,7 +607,7 @@
       <span class="proj-meta"><span class="proj-lang">C++</span></span>
       <span class="proj-arrow">↗</span>
     </a>
-    <p class="hack-note reveal" style="margin-top:22px">+ 16 more on <b><a href="https://github.com/smarpitm?tab=repositories" target="_blank" rel="noopener">github/smarpitm ↗</a></b></p>
+    <p class="hack-note reveal" style="margin-top:22px">+ 17 more on <b><a href="https://github.com/smarpitm?tab=repositories" target="_blank" rel="noopener">github/smarpitm ↗</a></b></p>
   </div>
 </section>
 <section id="hackathons">
