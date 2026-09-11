@@ -3,8 +3,17 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Smarpit Malik — Machine Learning & Data Science</title>
-<meta name="description" content="Smarpit Malik builds machine learning systems and data-driven products. LLMs, RAG pipelines, eight hackathons and counting." />
+<title>Smarpit Malik — ML &amp; Full-Stack</title>
+<meta name="description" content="Smarpit Malik builds machine learning systems and full-stack products — LLM fine-tuning, RAG pipelines, and PRAMANAM, live in production. Eight hackathons and counting." />
+<meta name="theme-color" content="#0b0b09" />
+<script>
+  // anti-FOUC: set theme before first paint
+  (function () {
+    var t = localStorage.getItem("theme");
+    if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+    document.documentElement.dataset.theme = t;
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -17,9 +26,22 @@
     --line: rgba(240, 237, 228, 0.14);
     --line-soft: rgba(240, 237, 228, 0.07);
     --accent: #ff4a1f;
+    --grain-opacity: 0.05;
+    color-scheme: dark;
     --serif: "Instrument Serif", serif;
     --sans: "Inter", sans-serif;
     --mono: "JetBrains Mono", monospace;
+  }
+  [data-theme="light"] {
+    --ink: #f0ede4;
+    --ink-2: #e7e4d8;
+    --paper: #14130f;
+    --dim: #6d6b60;
+    --line: rgba(20, 19, 15, 0.16);
+    --line-soft: rgba(20, 19, 15, 0.08);
+    --accent: #e84317;
+    --grain-opacity: 0.035;
+    color-scheme: light;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -44,7 +66,7 @@
     inset: -50%;
     z-index: 90;
     pointer-events: none;
-    opacity: 0.05;
+    opacity: var(--grain-opacity);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
     animation: grain 8s steps(10) infinite;
   }
@@ -100,6 +122,23 @@
     animation: pulse 2s ease-in-out infinite;
   }
   @keyframes pulse { 50% { opacity: 0.3; } }
+
+  .theme-toggle {
+    background: none;
+    border: none;
+    border-bottom: 1px dotted currentColor;
+    padding: 0 0 2px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: inherit;
+    opacity: 0.75;
+    cursor: pointer;
+    transition: opacity 0.2s ease, color 0.2s ease;
+  }
+  .theme-toggle:hover { opacity: 1; color: var(--accent); }
+  .theme-toggle:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
 </style>
 </head>
 <body>
@@ -349,6 +388,7 @@
   .proj-lang { font-family: var(--mono); font-size: 11.5px; color: var(--dim); display: flex; align-items: center; gap: 8px; letter-spacing: 0.08em; text-transform: uppercase; }
   .proj-lang::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--dim); }
   .proj-lang.hot::before { background: var(--accent); }
+  .proj-live { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
 
   .proj-arrow {
     font-size: 1.5rem;
@@ -466,6 +506,7 @@
       <a href="#projects">Projects</a>
       <a href="#hackathons">Hackathons</a>
       <a href="#contact">Contact</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch color theme" title="Switch color theme"><span id="themeVal">lights: out</span></button>
       <a class="avail" href="#contact"><i></i>Open to work</a>
     </div>
   </div>
@@ -481,13 +522,13 @@
       Smarpit
       <span class="row2">
         <em>Malik</em>
-        <span class="hero-tag">I build <strong>machine learning systems</strong> — LLM fine-tuning, RAG pipelines, and prototypes shipped at hackathon speed.</span>
+        <span class="hero-tag">I build <strong>ML systems &amp; full-stack products</strong> — LLM fine-tuning, RAG pipelines, deployed with the boring parts actually working.</span>
       </span>
     </h1>
     <div class="hero-foot">
       <div class="whoami"><span class="prompt">$</span> whoami → <span class="typed" id="typed"></span><span class="caret"></span></div>
       <div class="hero-stats">
-        <div class="stat"><span class="num" data-count="23">0</span><span class="lbl">repos</span></div>
+        <div class="stat"><span class="num" data-count="26">0</span><span class="lbl">repos</span></div>
         <div class="stat"><span class="num" data-count="8">0</span><span class="lbl">hacks</span></div>
         <div class="stat"><span class="num" data-count="26">0</span><span class="lbl">stars</span></div>
       </div>
@@ -497,7 +538,7 @@
 
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track" id="marquee">
-    <span><i>◆</i>Python</span><span><i>◆</i>Machine Learning</span><span><i>◆</i>Deep Learning</span><span><i>◆</i>LLM Fine-tuning</span><span><i>◆</i>RAG Pipelines</span><span><i>◆</i>Data Science</span><span><i>◆</i>Pandas</span><span><i>◆</i>C++ / DSA</span><span><i>◆</i>Flutter</span><span><i>◆</i>Hackathons</span>
+    <span><i>◆</i>Python</span><span><i>◆</i>Machine Learning</span><span><i>◆</i>Deep Learning</span><span><i>◆</i>LLM Fine-tuning</span><span><i>◆</i>RAG Pipelines</span><span><i>◆</i>TypeScript</span><span><i>◆</i>Next.js</span><span><i>◆</i>PostgreSQL</span><span><i>◆</i>Data Science</span><span><i>◆</i>Pandas</span><span><i>◆</i>C++ / DSA</span><span><i>◆</i>Flutter</span><span><i>◆</i>Hackathons</span>
   </div>
 </div>
 
@@ -519,6 +560,9 @@
             My happy place is a hackathon: a vague problem statement, a team, a deadline, and a model that has to work by morning. That loop — <strong>prototype fast, measure, iterate</strong> — is how I went from QR-code generators to LLM-powered RAG applications.
           </p>
           <p>
+            PRAMANAM taught me the other half: <strong>auth, databases, deploys</strong> — the boring parts are what make software real. I like building them too.
+          </p>
+          <p>
             Looking to collaborate on <strong>Python, ML, or data science projects</strong>. Ask me about Python, Pandas, or getting started with ML — I remember exactly what the first epoch felt like.
           </p>
         </div>
@@ -531,6 +575,7 @@
           <div class="row"><span class="k">currently_training</span><span class="v">deep_learning</span></div>
           <div class="row"><span class="k">also_learning</span><span class="v">dsa_in_c++</span></div>
           <div class="row"><span class="k">collaborates_on</span><span class="v">python · ml · data</span></div>
+          <div class="row"><span class="k">ships</span><span class="v on">nextjs · vercel</span></div>
           <div class="row"><span class="k">hackathon_count</span><span class="v on">8 and rising</span></div>
           <div class="row"><span class="k">open_to_work</span><span class="v on">true</span></div>
         </div>
@@ -538,12 +583,12 @@
       <div class="config-card readme-card reveal">
         <div class="config-head"><span class="dots"><i></i><i></i><i></i></span> github.com/smarpitm — README.md</div>
         <div class="config-body">
-          <div class="row"><span class="k">🔭 working_on</span><span class="v">ML &amp; DS projects</span></div>
-          <div class="row"><span class="k">🌱 learning</span><span class="v">ML · Deep Learning · DSA</span></div>
-          <div class="row"><span class="k">👯 collab_on</span><span class="v">Python · ML · Data Science</span></div>
-          <div class="row"><span class="k">💬 ask_me_about</span><span class="v on">Python · Pandas · starting ML</span></div>
-          <div class="row"><span class="k">📫 reach_me</span><span class="v on"><a href="mailto:smarpitmalik@gmail.com">email</a> · <a href="https://www.linkedin.com/in/smarpit-malik-518250289/" target="_blank" rel="noopener">linkedin ↗</a></span></div>
-          <div class="row"><span class="k">✨ note</span><span class="v">thanks for stopping by!</span></div>
+          <div class="row"><span class="k">working_on</span><span class="v on">PRAMANAM · live in prod</span></div>
+          <div class="row"><span class="k">learning</span><span class="v">ML · Deep Learning · DSA</span></div>
+          <div class="row"><span class="k">collab_on</span><span class="v">Python · ML · Data Science</span></div>
+          <div class="row"><span class="k">ask_me_about</span><span class="v on">Python · Pandas · starting ML</span></div>
+          <div class="row"><span class="k">reach_me</span><span class="v on"><a href="mailto:smarpitmalik@gmail.com">email</a> · <a href="https://www.linkedin.com/in/smarpit-malik-518250289/" target="_blank" rel="noopener">linkedin ↗</a></span></div>
+          <div class="row"><span class="k">note</span><span class="v">thanks for stopping by!</span></div>
         </div>
       </div>
       </aside>
@@ -560,7 +605,7 @@
       <div class="stack-row"><span class="stack-cat">ML / Data</span><div class="stack-items"><span>Python</span><span>Pandas</span><span>NumPy</span><span>scikit-learn</span><span>Jupyter</span><span>Matplotlib</span></div></div>
       <div class="stack-row"><span class="stack-cat">Deep Learning / LLMs</span><div class="stack-items"><span>PyTorch</span><span>TensorFlow</span><span>Hugging Face</span><span>LangChain</span><span>RAG</span><span>Fine-tuning</span></div></div>
       <div class="stack-row"><span class="stack-cat">Languages</span><div class="stack-items"><span>C++</span><span>Dart</span><span>TypeScript</span><span>JavaScript</span><span>SQL</span><span>Bash</span></div></div>
-      <div class="stack-row"><span class="stack-cat">Web / App</span><div class="stack-items"><span>Flutter</span><span>HTML / CSS</span><span>FastAPI</span><span>Streamlit</span></div></div>
+      <div class="stack-row"><span class="stack-cat">Web / Shipped</span><div class="stack-items"><span>Next.js</span><span>PostgreSQL</span><span>Prisma</span><span>Flutter</span><span>FastAPI</span><span>HTML / CSS</span><span>Streamlit</span></div></div>
       <div class="stack-row"><span class="stack-cat">Currently learning</span><div class="stack-items"><span>Deep Learning</span><span>DSA in C++</span><span>MLOps</span><span>Transformers</span></div></div>
     </div>
   </div>
@@ -571,43 +616,49 @@
       <h2 class="sec-title">Selected <em>work</em></h2>
       <span class="sec-index">(03) — INDEX</span>
     </div>
-    <a class="proj-row reveal" href="https://github.com/smarpitm/LLMRagapplication" target="_blank" rel="noopener">
+    <a class="proj-row reveal" href="https://sih-2026-pramanam.vercel.app/" target="_blank" rel="noopener">
       <span class="proj-num">/001</span>
+      <span><span class="proj-name">PRAMANAM</span><span class="proj-desc" style="display:block">Document &amp; certificate verification — JWS-signed QR codes, PDF pipeline. Smart India Hackathon 2026, six-person team, live in production.</span></span>
+      <span class="proj-meta"><span class="proj-live">● live</span><span class="proj-lang hot">TypeScript</span></span>
+      <span class="proj-arrow">↗</span>
+    </a>
+    <a class="proj-row reveal" href="https://github.com/smarpitm/LLMRagapplication" target="_blank" rel="noopener">
+      <span class="proj-num">/002</span>
       <span><span class="proj-name">LLM RAG Application</span><span class="proj-desc" style="display:block">Retrieval-augmented generation — grounding LLM answers in your own documents instead of letting it guess.</span></span>
       <span class="proj-meta"><span class="proj-lang hot">Python</span></span>
       <span class="proj-arrow">↗</span>
     </a>
     <a class="proj-row reveal" href="https://github.com/smarpitm/finetuningllm" target="_blank" rel="noopener">
-      <span class="proj-num">/002</span>
+      <span class="proj-num">/003</span>
       <span><span class="proj-name">Fine-tuning LLMs</span><span class="proj-desc" style="display:block">Notebooks on adapting large language models — dataset prep, training loops, evaluating what actually improved.</span></span>
       <span class="proj-meta"><span class="proj-lang hot">Jupyter</span></span>
       <span class="proj-arrow">↗</span>
     </a>
     <a class="proj-row reveal" href="https://github.com/smarpitm/neurospark-stage1" target="_blank" rel="noopener">
-      <span class="proj-num">/003</span>
+      <span class="proj-num">/004</span>
       <span><span class="proj-name">NeuroSpark — Stage 1</span><span class="proj-desc" style="display:block">Hackathon build: an ML pipeline taken from raw data to working demo under a hard deadline.</span></span>
       <span class="proj-meta"><span class="proj-lang">Python</span></span>
       <span class="proj-arrow">↗</span>
     </a>
     <a class="proj-row reveal" href="https://github.com/smarpitm/machinelearning" target="_blank" rel="noopener">
-      <span class="proj-num">/004</span>
+      <span class="proj-num">/005</span>
       <span><span class="proj-name">Machine Learning Lab</span><span class="proj-desc" style="display:block">Core ML algorithms implemented and stress-tested in notebooks — understanding what libraries do under the hood.</span></span>
       <span class="proj-meta"><span class="proj-lang">Python</span></span>
       <span class="proj-arrow">↗</span>
     </a>
     <a class="proj-row reveal" href="https://github.com/smarpitm/hackthemind" target="_blank" rel="noopener">
-      <span class="proj-num">/005</span>
+      <span class="proj-num">/006</span>
       <span><span class="proj-name">HackTheMind</span><span class="proj-desc" style="display:block">Cross-platform Flutter app built with my team for a mental-health focused hackathon.</span></span>
       <span class="proj-meta"><span class="proj-lang">Dart</span></span>
       <span class="proj-arrow">↗</span>
     </a>
     <a class="proj-row reveal" href="https://github.com/smarpitm/DSA" target="_blank" rel="noopener">
-      <span class="proj-num">/006</span>
+      <span class="proj-num">/007</span>
       <span><span class="proj-name">The DSA Climb</span><span class="proj-desc" style="display:block">My public process of learning data structures &amp; algorithms in C++ — every solved problem committed.</span></span>
       <span class="proj-meta"><span class="proj-lang">C++</span></span>
       <span class="proj-arrow">↗</span>
     </a>
-    <p class="hack-note reveal" style="margin-top:22px">+ 17 more on <b><a href="https://github.com/smarpitm?tab=repositories" target="_blank" rel="noopener">github/smarpitm ↗</a></b></p>
+    <p class="hack-note reveal" style="margin-top:22px">+ 19 more on <b><a href="https://github.com/smarpitm?tab=repositories" target="_blank" rel="noopener">github/smarpitm ↗</a></b></p>
   </div>
 </section>
 <section id="hackathons">
@@ -618,7 +669,7 @@
     </div>
     <div class="hack-grid reveal">
       <div class="hack-cell"><span class="hack-date">Jul 2026</span><h3>HackAgent AIx</h3><p>AI agent system built end to end in Python with Team Coin Hustlers.</p></div>
-      <div class="hack-cell"><span class="hack-date">Jul 2026</span><h3>NHAI Hackathon 7.0</h3><p>TypeScript solution for India's national highway authority challenge.</p></div>
+      <div class="hack-cell"><span class="hack-date">Jul 2026</span><h3>NHAI Hackathon 7.0</h3><p>Finalist — built the CV liveness module for India's national highway authority challenge.</p></div>
       <div class="hack-cell"><span class="hack-date">Jul 2026</span><h3>Bharatiya Antariksh</h3><p>Space-tech problem solving for the national space hackathon.</p></div>
       <div class="hack-cell"><span class="hack-date">Jun 2026</span><h3>NeuroSpark</h3><p>Raw data to working ML demo on a tight deadline.</p></div>
       <div class="hack-cell"><span class="hack-date">Jun 2026</span><h3>Hack2Skill</h3><p>Rapid prototyping — shipped a functional Python build.</p></div>
@@ -659,6 +710,22 @@
     else if (ci > 0) { ci--; setTimeout(type, 28); }
     else { deleting = false; ri = (ri + 1) % roles.length; setTimeout(type, 320); }
   })();
+
+  // theme toggle
+  const rootEl = document.documentElement;
+  const themeVal = document.getElementById("themeVal");
+  function paintTheme(t) {
+    themeVal.textContent = t === "light" ? "lights: on" : "lights: out";
+    document.querySelector('meta[name="theme-color"]').setAttribute("content", t === "light" ? "#f0ede4" : "#0b0b09");
+    dispatchEvent(new CustomEvent("themechange", { detail: t }));
+  }
+  document.getElementById("themeToggle").addEventListener("click", () => {
+    const t = rootEl.dataset.theme === "light" ? "dark" : "light";
+    rootEl.dataset.theme = t;
+    try { localStorage.setItem("theme", t); } catch (e) {}
+    paintTheme(t);
+  });
+  paintTheme(rootEl.dataset.theme || "dark");
 
   // marquee loop
   const marquee = document.getElementById('marquee');
@@ -719,7 +786,10 @@
     canvas.parentElement.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
 
     const LINK = 160;
+    let theme = rootEl.dataset.theme || "dark";
+    addEventListener("themechange", e => { theme = e.detail; });
     function frame() {
+      const particleRGB = theme === "light" ? "20,19,15" : "240,237,228";
       ctx.clearRect(0, 0, W, H);
       const linkPx = LINK * devicePixelRatio;
       for (const p of nodes) {
@@ -736,14 +806,14 @@
           const a = nodes[i], b = nodes[j];
           const d = Math.hypot(a.x - b.x, a.y - b.y);
           if (d < linkPx) {
-            ctx.strokeStyle = 'rgba(240,237,228,' + (0.07 * (1 - d / linkPx)) + ')';
+            ctx.strokeStyle = 'rgba(' + particleRGB + ',' + (0.07 * (1 - d / linkPx)) + ')';
             ctx.lineWidth = devicePixelRatio * 0.6;
             ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
           }
         }
       }
       for (const p of nodes) {
-        ctx.fillStyle = 'rgba(240,237,228,0.35)';
+        ctx.fillStyle = 'rgba(' + particleRGB + ',0.35)';
         ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 7); ctx.fill();
       }
       requestAnimationFrame(frame);
