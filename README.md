@@ -88,13 +88,4 @@ The toggle fires a custom `themechange` event, and the canvas particle renderer 
 
 ---
 
-## README for the owner (this page's README, not the profile README)
 
-This file describes the portfolio repo itself. Do not confuse it with `github.com/smarpitm` profile README — that's a separate artifact in its own repo and written for visitors. This README is for the page as a codebase.
-
-Practical notes:
-
-- The site is intentionally a single file. Keep it that way unless there's a real reason to split it. If a split happens, it should be because the file is genuinely getting too big to edit safely, not because it looks "cleaner."
-- Changes to the page should land in `index.html`. If you touch the palette, type, section order, project list, or the little JS behaviour bits, update the relevant part of this README if the change is structural enough to matter later.
-- The `.shots/` folder and the test runner are scratch artifacts for visual QA. They're gitignored and not part of the site. Don't commit them.
-- The theme toggle and the canvas both read `rootEl.dataset.theme`. If you change the theme mechanism, check both the toggle flow and the canvas flow together — they're the two places that depend on it.
